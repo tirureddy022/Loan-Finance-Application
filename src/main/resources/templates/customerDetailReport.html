@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Detail view</title>
+	<link rel="icon" href="favicon.png" type="image/png">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="/reports.css">
+
+
+</head>
+
+<body>
+	<div th:replace="~{navbar.html}"></div>
+	<div class="container mt-5">
+		<div class="card shadow">
+			<div class="card-header text-secondary fw-bold">
+				<h4>Detail Report</h4>
+			</div>
+			<div class="card-body">
+				<div style="max-width: 250px; float: inline-end;" >
+					<form class="d-flex my-2" th:action="@{/detailReports}"
+						id="searchForm">
+						<input class="form-control me-2 shadow w-200" type="number" name="loanNo" id="loanNo"
+							placeholder="Loan No"  required>
+						<button class="btn btn-secondary shadow" type="submit">Search</button>
+					</form>
+				</div>
+				<div class="container mx-auto mt-3 amount-info fw-bold">
+					<div class="text-secondary">
+						<p>Total Amount: <span class="text-success" th:text="${totalAmount}"></span></p>
+					</div>
+					<div class="text-secondary">
+						<p>Paid Amount: <span class="text-info" th:text="${paidAlready}"></span></p>
+					</div>
+					<div class="text-secondary">
+						<p>Pending Amount: <span class="text-danger" th:text="${pendingAmount}"></span></p>
+					</div>
+				</div>
+
+				<div class="table-container mx-auto" style="max-width: 800px;">
+					<div class="text-center">
+						<table class="table  table-hover my-1 shadow text-center custom-table">
+							<thead 	class="table-warning text-white">
+								<tr>
+									<th>Loan No</th>
+									<th>Date</th>
+									<th>Amount</th>
+								</tr>
+							</thead>
+							<tbody id="rec">
+								<tr th:each="loan : ${custReport}">
+									<td th:text="${loan.loanNo}"></td>
+									<td th:text="${loan.date}" id="end"></td>
+									<td th:text="${loan.amount}"></td>
+								</tr>
+								<tr th:if="${#lists.isEmpty(custReport)}">
+									<td colspan="3" role="alert" >
+										No Records Found
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

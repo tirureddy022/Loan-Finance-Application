@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Register</title>
+	<link rel="icon" href="favicon.png" type="image/png">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="bg-light">
+	<div th:replace="~{navbar.html}"></div>
+	<div class="container my-2 " style="max-width: 400px;">
+		<div class="card mx-auto  shadow ">
+			<div class="card-header text-center bg-light text-info p-1 shadow">
+				<h5>Register New </h5>
+			</div>
+			<p th:text="${status}" class="text-warning ms-2 my-1"></p>
+			<div class="card-body container text-center text-secondary " style="max-width: 500px;">
+				<form method="post" th:action="@{/handlereg}" th:object="${customer}">
+					<div class="mb-2 form-floating">
+						<input type="text" class="form-control " th:field="*{name}" id="loanNumberField" placeholder=""
+							required>
+						<label for="loanNo" class="form-label">Name</label>
+					</div>
+
+					<div class="mb-2 form-floating">
+						<input type="text" class="form-control " th:field="*{location}" placeholder="" required>
+						<label for="text" class="form-label">Location</label>
+					</div>
+					<div class="mb-2 form-floating">
+						<input type="number" class="form-control " th:field="*{phno}" placeholder="" required>
+						<label for="phNo" class="form-label">Phone No</label>
+					</div>
+					<div class="mb-2 form-floating ">
+						<select class="form-select  text-secondary " th:field="*{gender}" required>
+							<option value="#" selected>-- Select your Gender -- </option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Others">Others</option>
+						</select>
+					</div>
+					<div class="mb-2 form-floating">
+						<input type="date" class="form-control " th:field="*{startDate}" placeholder="" required>
+						<label for="startDate" class="form-label">Start Date</label>
+					</div>
+					<div class="mb-2 form-floating">
+						<input type="date" class="form-control " th:field="*{endDate}" placeholder="" required>
+						<label for="endDate" class="form-label">End Date</label>
+					</div>
+					<div class="mb-2 form-floating ">
+						<select class="form-select  text-secondary " th:field="*{loanType}" required>
+							<option value="#" selected>-- Loan Type -- </option>
+							<option value="Daily">Daily</option>
+							<option value="Monthly">Monthly</option>
+							<option value="Sunday">Sunday</option>
+							<option value="Monday">Monday</option>
+							<option value="Tuesday">Tuesday</option>
+							<option value="Wednesday">Wednesday</option>
+							<option value="Thursday">Thursday</option>
+							<option value="Friday">Friday</option>
+							<option value="Saturday">Saturday</option>
+						</select>
+					</div>
+					<div class="mb-2 form-floating">
+						<input type="number" class="form-control " th:field="*{loanAmount}" placeholder="" required>
+						<label for="loanAmount" class="form-label">Loan Amount</label>
+					</div>
+					<div class="mb-3 form-floating">
+						<input type="number" class="form-control " th:field="*{intrest}" placeholder="" required>
+						<label for="intrest" class="form-label">Intrest %</label>
+					</div>
+
+					<div class="mt-2  text-center">
+						<button type="submit" class="btn btn-primary shadow" id="addBtn">Register</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+			crossorigin="anonymous"></script>
+</body>
+
+</html>
